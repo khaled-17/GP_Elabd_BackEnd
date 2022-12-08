@@ -1,12 +1,13 @@
 {
   "name": "y",
   "version": "1.0.0",
-  "description": "",
+  "description": "y",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+     "start": "node index.js"
+
   },
-  "author": "",
+  "author": "y",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -16,5 +17,14 @@
     "mongoose": "^6.7.5",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.20"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khaled-17/GP_Elabd_BackEnd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/khaled-17/GP_Elabd_BackEnd/issues"
+  },
+  "homepage": "https://github.com/khaled-17/GP_Elabd_BackEnd#readme"
 }
