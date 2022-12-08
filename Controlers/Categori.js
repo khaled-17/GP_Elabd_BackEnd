@@ -8,8 +8,7 @@ async function CreateCategorie(Data) {
                 CatEnName: Data.CatEnName,
                 SubCategorieID:Data.SubCategorieID
             })
-            console.log(Data.SubCategorieID);
-            console.log(NewCategorie);
+
             return await NewCategorie.save()
     
 }

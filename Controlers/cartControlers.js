@@ -8,6 +8,9 @@ async function addToCart(UserID, RequestData) {
         UserId: UserID,
         ProductID: RequestData.ProductID,
     })
+    
+    const storedProduct = await Product.findById(RequestData.ProductID)
+    await Product.findByIdAndUpdate(RequestData.ProductID,{$set:{"NumberOfCarts":storedProduct.NumberOfCarts+1}})
     return newCart.save()
 }
 

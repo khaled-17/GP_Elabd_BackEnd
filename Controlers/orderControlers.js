@@ -9,10 +9,16 @@ async function CreateOrder(UserID, OrderData) {
                 Products: OrderData.Products,
                 Address: OrderData.Address
             })
+
             
-    const storedProduct = await Product.findById(RequestData.ProductID)
-    await Product.findByIdAndUpdate(RequestData.ProductID,{$set:{"NumberOfCarts":storedProduct.NumberOfCarts+1}})
-            return await NewOrder.save()
+
+
+    for (const item of OrderData.Products) {
+        const storedProduct = await Product.findById(item.ProductID)
+        await Product.findByIdAndUpdate(item.ProductID,{$set:{"Amount":storedProduct.Amount-item.Quantity }})
+    }
+
+        return await NewOrder.save()
     
 }
 
