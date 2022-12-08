@@ -12,13 +12,18 @@ async function addToCart(UserID, RequestData) {
 }
 
 
-async function removeFromCart(cartid) {
-    let cartData = await Product.findById(cartid)
+async function removeFromCart(cartid , UserID) {
+    let catprd = await Cart.findById(cartid)
+    if (catprd == null) {
+        return "Incorrect Cat Id"
+    } 
 
-    if (cartData == null) {
-        return "Incorrect Product Id"
 
-    } else {
+    else if (catprd.UserId.toString() !== UserID){
+        return "UnOuthorized Access"
+
+    }
+    else {
         await Cart.findByIdAndDelete(cartid)
         return "Product Deleted Successfuly"
     }
@@ -26,9 +31,8 @@ async function removeFromCart(cartid) {
 
 async function GetAllCArts(UserID) {
     const user = await User.findById(UserID)
-    console.log(user);
     if (user) {
-        return await Cart.find({ UserId: UserID })
+        return await Cart.find({ UserId: UserID }).populate('ProductID')
     }
     else {
         return null

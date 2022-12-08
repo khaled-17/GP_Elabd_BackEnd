@@ -45,12 +45,11 @@ router.get("/", async function (request, response, next) {
       let skip = request.query.skip || 0
       let EnName = request.query.EnName 
       let ArName = request.query.ArName 
-      let price = request.query.price
-      let EnCategories=request.query.EnCategories
-      let ArCategories=request.query.ArCategories
-      let latestProducts=request.query.latestProducts
-      let oldestProducts=request.query.oldestProducts
-      let Products = await GetAllProducts(skip, limit ,EnName,ArName,price,EnCategories,ArCategories,latestProducts,oldestProducts)
+      let minprice = request.query.minprice 
+      let maxprice = request.query.maxprice 
+      let CatID=request.query.Categorie
+      let SubCatID=request.query.SubCategorie
+      let Products = await GetAllProducts(skip, limit, EnName, ArName, minprice, maxprice, CatID , SubCatID)
       response.status(200).json(Products)
    }
    catch (err) {

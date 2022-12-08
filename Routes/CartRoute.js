@@ -11,7 +11,7 @@ router.post("/", VerfiyUser, async function (request, response, next) {
     try {
         const product = await Product.findById(request.body.ProductID)
         const user = await User.findById(request.User.id)
-        if(product && User){
+        if(product && user){
             const newCart = await addToCart(request.User.id,request.body)
         response.status(200).json(newCart)
         }
@@ -28,7 +28,7 @@ router.post("/", VerfiyUser, async function (request, response, next) {
 router.delete("/:id", VerfiyUser, async function (request, response, next) {
 
     try {
-       const DeletMessag = await removeFromCart(request.params.id)
+       const DeletMessag = await removeFromCart(request.params.id , request.User.id)
        response.status(200).json(DeletMessag)
  
     } catch (err) {

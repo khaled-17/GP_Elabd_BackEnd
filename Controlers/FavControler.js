@@ -15,14 +15,22 @@ async function addFav(UserID, RequestData) {
 }
 
 
-async function removeFromFav(cartid) {
-    let FavData = await Product.findById(cartid)
+async function removeFromFav(Favtid , UserID) {
+    let favprd = await Fav.findById(Favtid)
+    console.log();
+    console.log();
+    if (favprd == null) {
+        return "Incorrect Fav Id"
 
-    if (FavData == null) {
-        return "Incorrect Product Id"
+    } 
 
-    } else {
-        await Fav.findByIdAndDelete(cartid)
+
+    else if (favprd.UserId.toString() !== UserID){
+        return "UnOuthorized Access"
+
+    }
+    else {
+        await Fav.findByIdAndDelete(Favtid)
         return "Product Deleted Successfuly"
     }
 }
@@ -31,7 +39,7 @@ async function GetAllFav(UserID) {
     const user = await User.findById(UserID)
 
     if (user) {
-        return await Fav.find({ UserId: UserID })
+        return await Fav.find({ UserId: UserID }).populate('ProductID')
     }
     else {
         return null

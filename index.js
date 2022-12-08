@@ -8,6 +8,8 @@ const ProductRoute = require('./Routes/ProductRoute')
 const OrderRoute = require('./Routes/OrderRoute')
 const CartRoute = require('./Routes/CartRoute')
 const FavRoute = require('./Routes/FavRoute')
+const CategorieRoute = require('./Routes/CategorieRoute')
+const SubCategorieRoute = require('./Routes/SubCatRoute')
 
 dotenv.config()
 mongoose.connect(process.env.DB_URL)
@@ -32,6 +34,9 @@ app.use('/api/elabdfoods/Product',ProductRoute)
 app.use('/api/elabdfoods/Order',OrderRoute)
 app.use('/api/elabdfoods/Cart',CartRoute)
 app.use('/api/elabdfoods/Fav',FavRoute)
+app.use('/api/elabdfoods/Categorie',CategorieRoute)
+app.use('/api/elabdfoods/SubCategorie',SubCategorieRoute)
+
 
 app.use('*', function (req, res, next) {
     res.status(302).redirect('/not-found');

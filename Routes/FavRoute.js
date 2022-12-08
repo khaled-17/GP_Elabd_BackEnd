@@ -27,7 +27,7 @@ router.post("/", VerfiyUser, async function (request, response, next) {
 router.delete("/:id", VerfiyUser, async function (request, response, next) {
 
     try {
-        const DeletMessag = await removeFromFav(request.params.id)
+        const DeletMessag = await removeFromFav(request.params.id , request.User.id)
         response.status(200).json(DeletMessag)
 
     } catch (err) {
